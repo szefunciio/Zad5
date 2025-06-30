@@ -1,0 +1,23 @@
+name: Upload przez FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ftp-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pobierz kod
+        uses: actions/checkout@v4
+
+      - name: Wgraj pliki na FTP
+        uses: sebastianpopp/ftp-action@v1.1.0
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          localDir: .dist
+          remoteDir: /
