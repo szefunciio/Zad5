@@ -8,12 +8,11 @@ on:
 jobs:
   ftp-upload:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Pobierz kod
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Wgraj pliki na FTP
+      - name: Upload to FTP
         uses: sebastianpopp/ftp-action@v1.1.0
         with:
           host: ${{ secrets.FTP_HOST }}
