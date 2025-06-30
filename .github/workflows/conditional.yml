@@ -1,0 +1,13 @@
+name: Conditional Workflow
+
+on:
+  push:
+    paths:
+      - 'src/**'
+
+jobs:
+  conditional-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify about src changes
+        run: echo "Workflow triggered because of changes in src/ directory!"
