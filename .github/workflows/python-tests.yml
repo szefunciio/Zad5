@@ -1,0 +1,26 @@
+name: Python Tests
+
+on: [push]  # Uruchamia się przy każdym pushu
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest  # System operacyjny
+    
+    steps:
+      # Krok 1: Pobierz kod repozytorium
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      # Krok 2: Skonfiguruj Pythona
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'  # Używa najnowszej wersji 3.x
+          
+      # Krok 3: Zainstaluj zależności
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
+      # Krok 4: Uruchom testy
+      - name: Run tests
+        run: pytest src/  # Uruchom testy z folderu src/
