@@ -1,26 +1,24 @@
 name: Python Tests
 
-on: [push]  # Uruchamia się przy każdym pushu
+on: [push]
 
 jobs:
   run-tests:
-    runs-on: ubuntu-latest  # System operacyjny
-    
-steps:
-  ...
-  - name: Run tests
-    run: pytest  # bez podawania ścieżki
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
         
-      # Krok 2: Skonfiguruj Pythona
+      - name: List files (debug)
+        run: ls -R  # POKAŻE GDZIE JEST requirements.txt
+        
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'  # Używa najnowszej wersji 3.x
+          python-version: '3.x'
           
-      # Krok 3: Zainstaluj zależności
       - name: Install dependencies
         run: pip install -r requirements.txt
         
-      # Krok 4: Uruchom testy
       - name: Run tests
-        run: pytest src/  # Uruchom testy z folderu src/
+        run: pytest  # testuje całe repozytorium
